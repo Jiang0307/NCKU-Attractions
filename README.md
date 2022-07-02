@@ -3,5 +3,8 @@
 ## AI Model
 training
 
-## Android APP
+## Frontend
+Android APP的UI/UX
+
+## Backend
 利用Firebase realtime database與APP連接
