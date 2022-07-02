@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "616225542838",
+    "firebase_url": "https://schoolspots-5a845-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "schoolspots-5a845",
+    "storage_bucket": "schoolspots-5a845.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616225542838:android:a2efb0c7642b19f6ac8c17",
+        "android_client_info": {
+          "package_name": "com.example.schoolspots"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616225542838-7580pjbmhhl8sg7m4sglcu9ip9f07f4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATRS9WBCxHnZmpg-EmuD50-GhjzDuO34g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616225542838-7580pjbmhhl8sg7m4sglcu9ip9f07f4k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
