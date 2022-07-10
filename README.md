@@ -8,3 +8,5 @@ Android APP的UI/UX
 
 ## Backend
 利用Firebase realtime database與APP連接
+
+![fsm](./NCKU-Attractions.png)
