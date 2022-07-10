@@ -16,7 +16,6 @@ dir_path = os.path.dirname(__file__)
 config = {
     "apiKey": "AIzaSyARu5SRV8FSTygZ5Q0uktmn-gb9vPRuB00",
     "authDomain": "schoolspots-5a845.firebaseapp.com",
-    # "databaseURL":"https://schoolspots-5a845-default-rtdb.asia-southeasbegin.firebasedatabase.app/",
     "databaseURL":"https://schoolspots-5a845-default-rtdb.asia-southeast1.firebasedatabase.app",
     "projectId": "schoolspots-5a845",
     "storageBucket": "schoolspots-5a845.appspot.com",
@@ -61,7 +60,7 @@ def stream_handler(message):
         end = time.time()
         print(f"Time Elapsed : {round(end-begin,2)}s")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     model = load_model( Path(dir_path).joinpath("model").joinpath("model.h5").as_posix() )
     firebase = pyrebase.initialize_app(config)
     db = firebase.database()
