@@ -1,1 +1,1 @@
-worker: python ./backend/backend.py
+web : python ./backend/backend.py
