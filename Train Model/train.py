@@ -1,24 +1,22 @@
 import os
 import random
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
+from pathlib import Path
 from PIL import Image
-from keras.layers import Dense , GlobalAveragePooling2D
-from keras.models import Sequential
-from keras.optimizers import Adam
-from keras.applications import ResNet50 , InceptionV3 , InceptionResNetV2 , Xception , MobileNetV2	
-from keras.preprocessing.image import array_to_img
-from keras.callbacks import EarlyStopping
+from tensorflow.keras.layers import Dense , GlobalAveragePooling2D
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.applications import ResNet50 , InceptionV3 , InceptionResNetV2 , Xception , MobileNetV2	
+from tensorflow.keras.preprocessing.image import array_to_img
+from tensorflow.keras.callbacks import EarlyStopping
 
-"""
-資料為網路上+手動拍攝
-"""
+base_path = "C:/Users/User/Desktop/DATA"
+BATCH_SIZE = 32
 
-base_path = r"C:\Users\User\Desktop\NCKU_attractions"
-BATCH_SIZE = 16
-
-selected_model = "InceptionResNetV2"
+selected_model = "ResNet50"
 model_dict={"ResNet50":0,"MobileNetV2":1,"InceptionResNetV2":2,"Xception":3}
 model_input_size={"ResNet50":(224,224),"MobileNetV2":(224,224),"InceptionResNetV2":(299,299),"Xception":(299,299)}
 model_input_shape={"ResNet50":(224,224,3),"MobileNetV2":(224,224,3),"InceptionResNetV2":(299,299,3),"Xception":(299,299,3)}
@@ -41,13 +39,15 @@ def count_class():
 def preprocess(count,train,test): 
     list_of_sites_name = [[] for i in range(count)] #分配出count個list
     for i in range(count):
-        name = site_list[i] 
+        name = site_list[i]
         site_name_dict[name] = list_of_sites_name[i]
         img_label_dict[name] = i #標記每個景點的label是哪個數字
+        print(f"i : {i} , name : {name}")
 
     folder_1 = os.scandir(base_path)
     for folder_2 in folder_1: #folder2 : 各景點的資料夾
         if folder_2.is_dir(): 
+            print(folder_2.name)
             temp_path = os.path.join(base_path,folder_2) #temp_path : 各景點資料夾的路徑
             category = os.path.basename(temp_path) #景點的資料夾名稱
             for file in os.listdir(folder_2):            
@@ -63,9 +63,9 @@ def preprocess(count,train,test):
                 im = Image.open(img)
                 if im is not None:
                     im = im.resize(model_input_size[selected_model] , Image.ANTIALIAS)
-                    imarray = np.asarray(im,dtype="float")
+                    imarray = np.asarray(im,dtype="int32")
                     if( imarray.shape == model_input_shape[selected_model] ): #這邊這樣做是因為有些圖片是4個色彩通道，無法當作input所以不管4通道的圖片
-                        #imarray = np.asarray(im,dtype="float64")
+                        #imarray = np.asarray(im,dtype="int32")
                         label = img_label_dict[category]
                         temp.append([im,label]) #資料結構是[image,label]包在一起
             except(OSError,NameError):
@@ -73,50 +73,61 @@ def preprocess(count,train,test):
         length = int(folder_size*0.2) #每個景點分配20%的照片當test data
         train += temp[length:]
         test += temp[:length]
+    
+    print(f"train : {len(train)}")
+    print(f"test : {len(test)}")
 
-def data_augmentation(train,augmentation):
+def data_augmentation(train , augmentation):
     for i in range(len(train)):
         img = train[i][0] #TRAIN[i][1]是label
         label = train[i][1]
         #資料增強的部分顯卡內存不夠所以有些註解掉
         # brighter
-        t1 = random.uniform(0,0.3)
-        bright = tf.image.adjust_brightness(img,t1)
-        bright = np.asarray(bright,dtype="float64")
-        augmentation.append([bright, label])
+        value1 = random.randint(0,255)
+        temp = np.asarray(img)
+        shape = temp.shape
+        mat = np.ones(shape , dtype = "int32") * value1
+        brighter = cv2.add(np.asarray(img,dtype="int32") , mat) 
+        brighter = np.asarray(brighter,dtype="int32")
+        augmentation.append([brighter, label])
         # darker
-        t2 = random.uniform(0,0.3)
-        dark = tf.image.adjust_brightness(img,t2*-1)
-        dark = np.asarray(dark,dtype="float64")
-        augmentation.append([dark, label])
+        value2 = random.randint(0,255)
+        temp2 = np.asarray(img)
+        shape2 = temp2.shape
+        mat2 = np.ones(shape2 , dtype = "int32") * value2
+        darker = cv2.subtract(np.asarray(img,dtype="int32") , mat2) 
+        darker = np.asarray(darker,dtype="int32")
+        augmentation.append([darker, label])
         # counter-clockwise rotation
         counter_clockwise = img.rotate(random.randint(0,30))
-        counter_clockwise = np.asarray(counter_clockwise,dtype="float64")
+        counter_clockwise = np.asarray(counter_clockwise,dtype="int32")
         augmentation.append([counter_clockwise, label])
         # clockwise rotation
         clockwise = img.rotate(-1 * random.randint(0,30))
-        clockwise = np.asarray(clockwise,dtype="float64")
+        clockwise = np.asarray(clockwise,dtype="int32")
         augmentation.append([clockwise, label])
         # horizontal flip
         h_flip = img.transpose(method=Image.FLIP_LEFT_RIGHT)
-        h_flip = np.asarray(h_flip,dtype="float64")
+        h_flip = np.asarray(h_flip,dtype="int32")
         augmentation.append([h_flip , label])
+        """
         #central crop
         central_crop = tf.image.central_crop(img,0.5)
         central_crop = array_to_img(central_crop)
-        central_crop = np.asarray(central_crop,dtype="float64")
+        central_crop = np.asarray(central_crop,dtype="int32")
         augmentation.append([central_crop, label])
         # hue
         hue = tf.image.adjust_hue(img, (random.randint(2,5)/10))
-        hue = np.asarray(hue,dtype="float64")
+        hue = np.asarray(hue,dtype="int32")
         augmentation.append([hue, label])
+        """
 
 #用keras的pre-trained model
 def build_model(model_name,n_classes): 
     if model_name == "ResNet50":
-        selected = ResNet50(include_top = False , weights = 'imagenet' , input_shape = model_input_shape[model_name])
+        selected = ResNet50(include_top = False , weights = "imagenet" , input_shape = model_input_shape[model_name])
     elif model_name == "MobileNetV2":
-        selected = MobileNetV2(include_top = False , weights = 'imagenet' , input_shape = model_input_shape[model_name])
+        selected = MobileNetV2(include_top = False , weights = "imagenet" , input_shape = model_input_shape[model_name])
     elif model_name == "InceptionResNetV2":
         selected = InceptionResNetV2(include_top = False , weights="imagenet" , input_shape = model_input_shape[model_name])
     elif model_name == "Xception":
@@ -124,22 +135,16 @@ def build_model(model_name,n_classes):
     model = Sequential()
     model.add(selected)
     model.add(GlobalAveragePooling2D())
-    model.add(Dense(1024, activation='relu'))
-    model.add(Dense(n_classes, activation='softmax'))
+    model.add(Dense(1024, activation="relu"))
+    model.add(Dense(512, activation="relu"))
+    model.add(Dense(256, activation="relu"))
+    model.add(Dense(n_classes, activation="softmax"))
     selected_optimizer = Adam(learning_rate=0.00001)
     model.compile(optimizer=selected_optimizer , loss="sparse_categorical_crossentropy" , metrics=["accuracy"])
     model.summary()
     return model
 
-def normalization(data):
-    #tf.image.per_image_standardization(image)
-    mean =  np.mean(data,axis=0)
-    std =  np.std(data,axis=0)
-    data -= mean
-    data /= std
-    return data
-
-def create_dataset(train,test,augmentation):
+def create_dataset(train , test , augmentation):
     train_data = []
     train_label = []
     test_data = []
@@ -147,22 +152,21 @@ def create_dataset(train,test,augmentation):
     #圖片轉陣列
     for i in range(len(train)): 
         temp = train[i][0] 
-        temp = np.asarray(temp,dtype="float64") 
+        temp = np.asarray(temp,dtype="int32") 
         train[i][0] = temp
     #圖片轉陣列
     for i in range(len(test)):
         temp = test[i][0]
-        temp = np.asarray(temp,dtype="float64")
+        temp = np.asarray(temp,dtype="int32")
         test[i][0] = temp
 
     train_temp = np.asarray(train)
     test_temp = np.asarray(test)
     augmentation_temp = np.asarray(augmentation)
     print(train_temp.shape, augmentation_temp.shape)
-    train_temp = np.concatenate((train_temp, augmentation_temp)) #把資料增強的圖片加到train_temp中
+    train_temp = np.concatenate((train_temp , augmentation_temp)) #把資料增強的圖片加到train_temp中
     print(train_temp.shape)
     np.random.shuffle(train_temp)
-
     #把image跟label分開
     for image, label in train_temp:
         train_data.append(image)
@@ -190,20 +194,20 @@ def get_key(predict_label , img_label_dict):
 
 #印出accuracy跟loss
 def plot_training_history(history):
-    plt.plot(history.history['accuracy'])
-    plt.plot(history.history['val_accuracy'])
-    plt.title('accuracy')
-    plt.xlabel('epoch')
-    plt.ylabel('accuracy')
-    plt.legend(['train', 'validation'], loc='lower right')
+    plt.plot(history.history["accuracy"])
+    plt.plot(history.history["val_accuracy"])
+    plt.title("accuracy")
+    plt.xlabel("epoch")
+    plt.ylabel("accuracy")
+    plt.legend(["train", "validation"], loc="lower right")
     plt.show()
     # loss graph
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('loss')
-    plt.xlabel('epoch')
-    plt.ylabel('loss')
-    plt.legend(['train', 'validation'], loc='upper right')
+    plt.plot(history.history["loss"])
+    plt.plot(history.history["val_loss"])
+    plt.title("loss")
+    plt.xlabel("epoch")
+    plt.ylabel("loss")
+    plt.legend(["train", "validation"], loc="upper right")
     plt.show()
 
 #用testing set測試後算準確率跟把預測錯的圖片印出來
@@ -238,8 +242,8 @@ def prediction_result(test_data,test_label,prediction,img_label_dict):
             wrong = get_key(predicted_label[i],img_label_dict)
             answer = get_key(actual_label[i],img_label_dict)
             name = "答案 : "+answer+" 預測 : "+wrong
-            plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei'] 
-            plt.rcParams['axes.unicode_minus'] = False
+            plt.rcParams["font.sans-serif"] = ["Microsoft JhengHei"] 
+            plt.rcParams["axes.unicode_minus"] = False
             axes[-1].set_title(name)
             plt.imshow(img)
 
@@ -248,18 +252,16 @@ test = []
 augmentation = []
 
 NUM_CLASS = count_class()
-preprocess(NUM_CLASS,train,test)
-print("train : ", len(train))
-print("test : ", len(test))
+preprocess(NUM_CLASS , train , test)
+data_augmentation(train , augmentation)
+train_data , train_label  , test_data , test_label = create_dataset(train , test , augmentation)
+print("train : " , len(train_data) , len(train_label))
+print("test : " , len(test_data) , len(test_label))
 
-data_augmentation(train,augmentation)
-train_data , train_label  , test_data , test_label = create_dataset(train,test,augmentation)
-
-model = build_model(selected_model,NUM_CLASS)
-callback = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, restore_best_weights=True, patience=20)
+model = build_model(selected_model , NUM_CLASS)
+callback = EarlyStopping(monitor="val_accuracy", mode="max" , verbose=1 , restore_best_weights=True , patience=20)
 history = model.fit(train_data , train_label , batch_size=BATCH_SIZE , epochs=100 , shuffle=True , validation_split=0.2 , callbacks=callback)
-model.save(r"C:\Users\88691\Desktop\site_test_v3\InceptionResNetV2.h5")
+model.save(Path(os.path.dirname(__file__)).joinpath("model.h5").as_posix())  
 plot_training_history(history)
-
 prediction = model.predict(test_data)
-prediction_result(test_data,test_label,prediction,img_label_dict)
+prediction_result(test_data , test_label , prediction , img_label_dict)
