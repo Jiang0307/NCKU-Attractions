@@ -16,7 +16,7 @@ model_path = Path(dir_path).joinpath("model").joinpath("model-PyTorch.pth").as_p
 img_path = Path(dir_path).joinpath("test_data").joinpath("test_data.jpg").as_posix()
 
 def load_model():
-    my_model = torch.load(model_path)
+    my_model = torch.load(model_path , map_location=DEVICE)
     my_model.eval()
     return my_model
 
