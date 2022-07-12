@@ -1,1 +1,1 @@
-web : python ./backend/backend.py
+worker : python ./Backend/backend-PyTorch.py
