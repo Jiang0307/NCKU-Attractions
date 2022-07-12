@@ -11,19 +11,10 @@ from keras.models import load_model
 from pathlib import Path
 # from datetime import time
 
-dir_path = os.path.dirname(__file__)
 # firebase設定檔
-config = {
-    "apiKey": "AIzaSyARu5SRV8FSTygZ5Q0uktmn-gb9vPRuB00",
-    "authDomain": "schoolspots-5a845.firebaseapp.com",
-    "databaseURL":"https://schoolspots-5a845-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "projectId": "schoolspots-5a845",
-    "storageBucket": "schoolspots-5a845.appspot.com",
-    "messagingSenderId": "616225542838",
-    "appId": "1:616225542838:web:1e2d2c6167cfe78aac8c17"
-}
-
+config = {"apiKey": "AIzaSyARu5SRV8FSTygZ5Q0uktmn-gb9vPRuB00","authDomain": "schoolspots-5a845.firebaseapp.com","databaseURL":"https://schoolspots-5a845-default-rtdb.asia-southeast1.firebasedatabase.app","projectId": "schoolspots-5a845","storageBucket": "schoolspots-5a845.appspot.com","messagingSenderId": "616225542838","appId": "1:616225542838:web:1e2d2c6167cfe78aac8c17"}
 label_dict = {0:"博物館",1:"圖書館",2:"小西門",3:"招弟",4:"文物館",  5:"未來館",6:"榕園",7:"永恆之光",8:"直升機",9:"衛戍醫院",10:"詩人",11:"門神",12:"飛撲"}
+dir_path = os.path.dirname(__file__)
 
 def preprocess(img):
     img = cv2.resize(img,(224,224))
@@ -61,7 +52,7 @@ def stream_handler(message):
         print(f"Time Elapsed : {round(end-begin,2)}s")
 
 if __name__ == "__main__":
-    model = load_model( Path(dir_path).joinpath("model").joinpath("model.h5").as_posix() )
+    model = load_model( Path(dir_path).joinpath("model").joinpath("model-Keras.h5").as_posix() )
     firebase = pyrebase.initialize_app(config)
     db = firebase.database()
     storage = firebase.storage()
