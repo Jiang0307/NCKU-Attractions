@@ -2,13 +2,11 @@ package com.example.schoolspots;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +25,6 @@ public class adapter extends FirebaseRecyclerAdapter<attraction_model, adapter.v
 
     @Override
     protected void onBindViewHolder(@NonNull viewholder holder, int position, @NonNull attraction_model model) {
-
         holder.name.setText(getRef(position).getKey());
         holder.introduce.setText(model.getIntroduce());
 
@@ -66,6 +63,6 @@ public class adapter extends FirebaseRecyclerAdapter<attraction_model, adapter.v
     }
 
     public interface RecyclerviewListener {
-        void onCLick(View v, int postion);
+        void onCLick(View v, int position);
     }
 }

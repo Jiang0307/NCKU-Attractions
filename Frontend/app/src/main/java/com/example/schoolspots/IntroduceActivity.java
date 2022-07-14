@@ -68,7 +68,6 @@ public class IntroduceActivity extends AppCompatActivity {
         });
     }
 
-
     //動畫設定
     private void viewAnimation() {
 

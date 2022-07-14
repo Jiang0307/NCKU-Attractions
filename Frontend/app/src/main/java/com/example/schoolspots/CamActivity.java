@@ -231,6 +231,8 @@ public class CamActivity extends AppCompatActivity {
                         "com.example.schoolspots.fileprovider",
                         photoFile);
                 uriActivityResultLauncher.launch(photoURI);
+                titleTv.setText("");
+                messageTv.setText("");
             }
         }
     }
@@ -241,9 +243,9 @@ public class CamActivity extends AppCompatActivity {
         databaseReference.setValue(status);
     }
 
-    //上傳相片(spots-1.jpg),成功後修改狀態值
+    //上傳相片(test.jpg),成功後修改狀態值
     private void uploadPicture() {
-        storageReference = FirebaseStorage.getInstance().getReference().child("spots-1.jpg");
+        storageReference = FirebaseStorage.getInstance().getReference().child("test.jpg");
         storageReference.putFile(photoURI)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
