@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_introduce.xml",
+        "source": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\src\\main\\res\\layout\\activity_introduce.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_order.xml",
+        "source": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\src\\main\\res\\layout\\activity_order.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_cam.xml",
+        "source": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\src\\main\\res\\layout\\activity_cam.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\attraction_list.xml",
+        "source": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\src\\main\\res\\layout\\attraction_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_attraction.xml",
+        "source": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\src\\main\\res\\layout\\activity_attraction.xml"
+    }
+]
