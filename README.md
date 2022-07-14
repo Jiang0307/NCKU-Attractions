@@ -1,7 +1,7 @@
 # NCKU-Attractions
 
 ## Training
-用自定義資料及訓練model
+用自定義資料訓練model
 
 ## Frontend
 Android APP UI/UX
