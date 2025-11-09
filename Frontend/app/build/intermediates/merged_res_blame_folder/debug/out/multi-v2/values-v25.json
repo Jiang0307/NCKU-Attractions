@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.schoolspots.app-mergeDebugResources-24:/values-v25/values-v25.xml",
+            "outputFile": "com.example.schoolspots.app-mergeDebugResources-29:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\2735df6d1a73eab8b5b263e4463a794a\\transformed\\appcompat-1.3.0\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\b217ffaade48d83a18dc26d8be3e17ae\\transformed\\appcompat-1.3.0\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

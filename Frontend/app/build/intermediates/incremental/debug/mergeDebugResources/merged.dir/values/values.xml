@@ -499,6 +499,10 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
+    <color name="browser_actions_bg_grey">#F5F5F5</color>
+    <color name="browser_actions_divider_color">#1E000000</color>
+    <color name="browser_actions_text_color">#DE000000</color>
+    <color name="browser_actions_title_color">#646464</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
     <color name="cardview_dark_background">#FF424242</color>
@@ -691,6 +695,8 @@
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
     <dimen name="action_bar_size">16dp</dimen>
     <dimen name="appcompat_dialog_background_inset">16dp</dimen>
+    <dimen name="browser_actions_context_menu_max_width">500dp</dimen>
+    <dimen name="browser_actions_context_menu_min_padding">20dp</dimen>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
@@ -1202,6 +1208,8 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with <ns2:g example="Mail" id="application_name">%s</ns2:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Password</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Passkey</string>
     <string name="app_name">NCKU-Attractions</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
@@ -1229,12 +1237,16 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="copy_toast_msg">Link copied to clipboard</string>
     <string name="default_web_client_id" translatable="false">616225542838-7580pjbmhhl8sg7m4sglcu9ip9f07f4k.apps.googleusercontent.com</string>
     <string name="define_roundedimageview"/>
     <string name="error_icon_content_description">Error</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
+    <string name="fallback_menu_item_copy_link">Copy link</string>
+    <string name="fallback_menu_item_open_in_browser">Open in browser</string>
+    <string name="fallback_menu_item_share_link">Share link</string>
     <string name="firebase_database_url" translatable="false">https://schoolspots-5a845-default-rtdb.asia-southeast1.firebasedatabase.app</string>
     <string name="gcm_defaultSenderId" translatable="false">616225542838</string>
     <string name="google_api_key" translatable="false">AIzaSyATRS9WBCxHnZmpg-EmuD50-GhjzDuO34g</string>
@@ -3970,6 +3982,10 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+    <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
     <style name="Theme.MaterialComponents" parent="Base.Theme.MaterialComponents"/>
     <style name="Theme.MaterialComponents.BottomSheetDialog" parent="Theme.MaterialComponents.Dialog">
     <item name="android:windowBackground">@android:color/transparent</item>

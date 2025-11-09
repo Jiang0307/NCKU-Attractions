@@ -1,126 +1,126 @@
 [
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_back.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/back.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable-v24/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/layout_attraction_list.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/layout/attraction_list.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/layout_activity_order.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/layout/activity_order.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/xml_file_paths.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/xml/file_paths.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/layout_activity_introduce.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/layout/activity_introduce.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_add.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/add.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_attraction_image_shape.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/attraction_image_shape.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/layout_activity_attraction.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/layout/activity_attraction.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_add.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/add.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_attraction_item_shape5.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/attraction_item_shape5.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_ncku.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/ncku.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-hdpi/ic_launcher_foreground.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_photocamera.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/photocamera.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable-v24/ic_launcher_foreground.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/layout_activity_main.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_attraction_item_shape2.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/attraction_item_shape2.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_attraction_item_shape2.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/attraction_item_shape2.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_back_image.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/back_image.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_fileupload.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/fileupload.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-mdpi/ic_launcher_foreground.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_fileupload.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/fileupload.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_attraction_item_shape4.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/attraction_item_shape4.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/layout_activity_cam.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/layout/activity_cam.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_maincamera.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/maincamera.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_mainattraction.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/mainattraction.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_attraction_image_shape.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/attraction_image_shape.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/xml_file_paths.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/xml/file_paths.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_file.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/file.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_maincamera.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/maincamera.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_upload.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/upload.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-xxhdpi/ic_launcher_foreground.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-hdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_ncku.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/ncku.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/layout_attraction_list.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/layout/attraction_list.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_attraction_item_shape.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/attraction_item_shape.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-mdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/layout_activity_main.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/layout/activity_main.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_attraction_item_shape3.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/attraction_item_shape3.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_upload.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/upload.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_back_image.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/back_image.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_photocamera.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/photocamera.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_attraction_item_shape.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/attraction_item_shape.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_attraction_item_shape4.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/attraction_item_shape4.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_attraction_item_shape5.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/attraction_item_shape5.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/layout_activity_order.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/layout/activity_order.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/layout_activity_attraction.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/layout/activity_attraction.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/layout_activity_cam.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/layout/activity_cam.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_back.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/back.xml"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/mipmap-xhdpi/ic_launcher_foreground.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-xhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_attraction_item_shape3.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/attraction_item_shape3.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-xxxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/drawable_mainattraction.png.flat",
-        "source": "com.example.schoolspots.app-main-28:/drawable/mainattraction.png"
+        "merged": "com.example.schoolspots.app-merged_res-31:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.schoolspots.app-main-33:/mipmap-xxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.schoolspots.app-merged_res-26:/layout_activity_introduce.xml.flat",
-        "source": "com.example.schoolspots.app-main-28:/layout/activity_introduce.xml"
+        "merged": "com.example.schoolspots.app-merged_res-31:/drawable_file.xml.flat",
+        "source": "com.example.schoolspots.app-main-33:/drawable/file.xml"
     }
 ]

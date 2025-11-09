@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">NCKU-Attractions</string>
+    <string name="default_web_client_id" translatable="false">616225542838-7580pjbmhhl8sg7m4sglcu9ip9f07f4k.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://schoolspots-5a845-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+    <string name="gcm_defaultSenderId" translatable="false">616225542838</string>
+    <string name="google_api_key" translatable="false">AIzaSyATRS9WBCxHnZmpg-EmuD50-GhjzDuO34g</string>
+    <string name="google_app_id" translatable="false">1:616225542838:android:a2efb0c7642b19f6ac8c17</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyATRS9WBCxHnZmpg-EmuD50-GhjzDuO34g</string>
+    <string name="google_storage_bucket" translatable="false">schoolspots-5a845.appspot.com</string>
+    <string name="project_id" translatable="false">schoolspots-5a845</string>
+    <style name="Theme.SchoolSpots" parent="Theme.MaterialComponents.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">#1ABC9C</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">#1ABC9C</item>
+        <item name="android:colorBackground">#1ABC9C</item>
+        
+    </style>
+</resources>
