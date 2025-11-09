@@ -63,7 +63,6 @@ def train(model , train_batches , validation_batches):
     model.fit_generator(train_batches , steps_per_epoch=train_batches.samples//BATCH_SIZE , validation_data=validation_batches , validation_steps=validation_batches.samples//BATCH_SIZE , epochs=EPOCH)
     model.save( Path(CURRENT_PATH).joinpath("model-Keras.h5").as_posix() )
 
-
 if __name__ == "__main__":
     num_classes = count_class()
     model = build_model(num_classes)

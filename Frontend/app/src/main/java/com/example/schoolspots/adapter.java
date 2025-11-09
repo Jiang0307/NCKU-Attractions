@@ -30,7 +30,8 @@ public class adapter extends FirebaseRecyclerAdapter<attraction_model, adapter.v
 
         Glide.with(holder.img.getContext()).load(model.getPic_url()).into(holder.img);
 
-        holder.img.setOnClickListener(new View.OnClickListener() {
+        holder.img.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 Intent introduceIntent = new Intent(context, IntroduceActivity.class);

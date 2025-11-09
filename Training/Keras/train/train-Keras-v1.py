@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from pathlib import Path
 from PIL import Image
-from tensorflow.keras.layers import Dense , GlobalAveragePooling2D
+from tensorflow.keras.layers import Dense , GlobalAveragePooling2D , Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.applications import ResNet50 , InceptionV3 , InceptionResNetV2 , Xception , MobileNetV2	
@@ -14,8 +14,7 @@ from tensorflow.keras.preprocessing.image import array_to_img
 from tensorflow.keras.callbacks import EarlyStopping
 
 base_path = "C:/Users/User/Desktop/DATA"
-BATCH_SIZE = 32
-
+BATCH_SIZE = 64
 selected_model = "ResNet50"
 model_dict={"ResNet50":0,"MobileNetV2":1,"InceptionResNetV2":2,"Xception":3}
 model_input_size={"ResNet50":(224,224),"MobileNetV2":(224,224),"InceptionResNetV2":(299,299),"Xception":(299,299)}
@@ -135,8 +134,12 @@ def build_model(model_name,n_classes):
     model = Sequential()
     model.add(selected)
     model.add(GlobalAveragePooling2D())
+    model.add(Dense(2048, activation="relu"))
+    model.add(Dropout(0.2))
     model.add(Dense(1024, activation="relu"))
+    model.add(Dropout(0.2))
     model.add(Dense(512, activation="relu"))
+    model.add(Dropout(0.2))
     model.add(Dense(256, activation="relu"))
     model.add(Dense(n_classes, activation="softmax"))
     selected_optimizer = Adam(learning_rate=0.00001)

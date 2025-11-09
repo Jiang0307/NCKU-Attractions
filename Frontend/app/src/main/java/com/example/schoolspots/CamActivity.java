@@ -118,7 +118,8 @@ public class CamActivity extends AppCompatActivity {
 
         cam_fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 dispatchTakePictureIntent_OpenCam();
             }
         });
@@ -284,12 +285,6 @@ public class CamActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * 判断Activity是否Destroy
-     *
-     * @param
-     * @return
-     */
     public static boolean isDestroy(Activity mActivity) {
         if (mActivity == null || mActivity.isFinishing() || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && mActivity.isDestroyed())) {
             return true;

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
+            "outputFile": "com.example.schoolspots.app-mergeDebugResources-24:/values-h480dp-land-v13/values-h480dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\8a7a06036e0c4f4e613a8bbc02ac21f5\\transformed\\material-1.4.0\\res\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
+                    "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\d52d36fd43599648a9d485c7d6ad24bb\\transformed\\material-1.4.0\\res\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

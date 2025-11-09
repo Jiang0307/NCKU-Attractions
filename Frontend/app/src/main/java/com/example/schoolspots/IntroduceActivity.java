@@ -3,6 +3,7 @@ package com.example.schoolspots;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,9 +35,11 @@ public class IntroduceActivity extends AppCompatActivity {
 
     private void init() {
         introBackimg = findViewById(R.id.introbackimgbtn);
-        introBackimg.setOnClickListener(new View.OnClickListener() {
+        introBackimg.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });

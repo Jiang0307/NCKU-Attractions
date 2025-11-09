@@ -27,7 +27,8 @@ public class AttractionActivity extends AppCompatActivity {
 
         attraction_backImg_Btn = findViewById(R.id.attraction_backimgbtn);
 
-        attraction_backImg_Btn.setOnClickListener(new View.OnClickListener() {
+        attraction_backImg_Btn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 finish();

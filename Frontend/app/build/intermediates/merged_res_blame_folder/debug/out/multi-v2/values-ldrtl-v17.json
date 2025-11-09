@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\User\\Desktop\\GitHub\\NCKU-Attractions\\Frontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+            "outputFile": "com.example.schoolspots.app-mergeDebugResources-24:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\8a7a06036e0c4f4e613a8bbc02ac21f5\\transformed\\material-1.4.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\d52d36fd43599648a9d485c7d6ad24bb\\transformed\\material-1.4.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
