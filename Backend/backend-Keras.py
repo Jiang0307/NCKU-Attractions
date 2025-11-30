@@ -13,7 +13,6 @@ def download_model_from_storage(storage, model_storage_path, local_path):
     """從 Firebase Storage 下載模型檔案"""
     try:
         print(f"正在從 Firebase Storage 下載模型: {model_storage_path}")
-        # 修正：使用 filename 參數
         storage.child(model_storage_path).download(filename=local_path)
         print(f"模型下載完成: {local_path}")
         return True
@@ -35,6 +34,7 @@ def load_model_from_file(model_path, storage=None):
         if not download_model_from_storage(storage, model_storage_path_keras, model_path):
             raise FileNotFoundError(f"無法從 Firebase Storage 下載模型: {model_storage_path_keras}")
     
+    # 直接載入模型（模型檔案應該已經在映像中或已下載）
     return load_model(model_path)
 
 def preprocess():
@@ -74,15 +74,26 @@ def stream_handler(message):
         print(f"Time Elapsed : {round(end-begin,2)}s")
 
 if __name__ == "__main__":
-    # 先初始化 Firebase 以獲取 storage 物件
+    # 載入模型（如果映像中包含模型檔案，直接載入；否則從 Firebase Storage 下載）
+    print("正在載入模型...")
+    
+    # 先檢查本地是否有模型檔案
+    if Path(model_path_keras).exists():
+        print("找到本地模型檔案，直接載入")
+        model = load_model(model_path_keras)
+    else:
+        # 如果沒有，從 Firebase Storage 下載
+        print("本地模型不存在，從 Firebase Storage 下載...")
+        firebase = pyrebase.initialize_app(config)
+        storage = firebase.storage()
+        model = load_model_from_file(model_path_keras, storage=storage)
+    
+    print("模型載入完成")
+    
+    # 初始化 Firebase
     firebase = pyrebase.initialize_app(config)
     db = firebase.database()
     storage = firebase.storage()
-    
-    # 載入模型（如果需要會從 Firebase Storage 下載）
-    print("正在載入模型...")
-    model = load_model_from_file(model_path_keras, storage=storage)
-    print("模型載入完成")
     
     # 開始監聽 Firebase Realtime Database
     my_stream = db.child("pictureStatus").stream(stream_handler)

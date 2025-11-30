@@ -19,7 +19,7 @@ venv/
 ENV/
 env/
 *.pth
-*.h5
+# *.h5  # 註解掉，讓模型檔案包含在映像中
 data/*
 !data/.gitkeep
 
