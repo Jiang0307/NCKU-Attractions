@@ -1,5 +1,6 @@
-torch>=2.0.0
-torchvision>=0.15.0
+# 使用 TensorFlow/Keras 替代 PyTorch
+tensorflow>=2.13.0
+silence-tensorflow>=0.1.2
 pyrebase4>=4.7.1
 Pillow>=10.0.0
 numpy>=1.24.0

@@ -12,10 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 # 複製 requirements.txt 並安裝 Python 依賴
-# 使用 CPU-only 版本的 PyTorch 以大幅減少映像大小（從 ~7GB 減少到 ~2-3GB）
+# 使用 TensorFlow/Keras（比 PyTorch 更輕量）
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir -r requirements.txt && \
     pip cache purge && \
     rm -rf /root/.cache/pip
 
@@ -29,5 +29,5 @@ RUN mkdir -p data model
 ENV PYTHONUNBUFFERED=1
 
 # 啟動應用程式
-CMD ["python", "backend-PyTorch.py"]
+CMD ["python", "backend-Keras.py"]
 
