@@ -1,17 +1,24 @@
-# 使用 Python 3.10 slim 作為基礎映像
+# 使用 Python 3.10 slim 作為基礎映像（約 120MB）
 FROM python:3.10-slim
 
 # 設置工作目錄
 WORKDIR /app
 
-# 安裝系統依賴
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# 安裝最小系統依賴（僅 Pillow 需要的 libjpeg）
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libjpeg-dev \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # 複製 requirements.txt 並安裝 Python 依賴
+# 使用 CPU-only 版本的 PyTorch 以大幅減少映像大小（從 ~7GB 減少到 ~2-3GB）
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir pyrebase4 Pillow numpy && \
+    pip cache purge && \
+    rm -rf /root/.cache/pip
 
 # 複製應用程式檔案
 COPY . .
