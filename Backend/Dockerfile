@@ -22,14 +22,6 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
 # 複製應用程式檔案
 COPY . .
 
-# 調試：列出所有檔案以確認複製成功
-RUN echo "=== Files in /app ===" && \
-    ls -la /app/ && \
-    echo "=== Checking for backend-PyTorch.py ===" && \
-    test -f /app/backend-PyTorch.py && echo "✓ backend-PyTorch.py found" || (echo "✗ backend-PyTorch.py NOT FOUND" && exit 1) && \
-    echo "=== All .py files ===" && \
-    find /app -name "*.py" -type f
-
 # 創建必要的目錄
 RUN mkdir -p data model
 
