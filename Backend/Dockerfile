@@ -15,8 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 使用 CPU-only 版本的 PyTorch 以大幅減少映像大小（從 ~7GB 減少到 ~2-3GB）
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir pyrebase4 Pillow numpy && \
+    pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu && \
     pip cache purge && \
     rm -rf /root/.cache/pip
 
