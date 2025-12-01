@@ -124,7 +124,7 @@ def stream_handler(message):
         # 下載圖片
         img_file = local_dir.joinpath("test.jpg")
         print(f"正在從 Firebase Storage 下載圖片: {cloud_path} 到 {img_file}")
-        storage.child(cloud_path).download(img_file.as_posix())
+        storage.child(cloud_path).download(path=local_dir.as_posix(), filename="test.jpg")
         
         # 驗證檔案是否存在
         if not img_file.exists():
