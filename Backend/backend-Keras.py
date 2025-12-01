@@ -63,23 +63,33 @@ def load_model_from_file(model_path, storage=None, download_url=None):
     # 載入模型（使用與測試腳本相同的方式）
     try:
         print(f"正在載入模型: {model_path}")
+        # 嘗試標準載入
         model = load_model(model_path)
         print("模型載入成功")
         return model
     except Exception as e:
-        print(f"載入模型失敗: {e}")
-        print("這可能是因為：")
-        print("1. 模型檔案損壞或不完整")
-        print("2. TensorFlow/Keras 版本不兼容")
-        print("3. 模型架構問題")
-        # 如果載入失敗，刪除檔案以便重新下載
-        if Path(model_path).exists():
-            try:
-                Path(model_path).unlink()
-                print(f"已刪除損壞的檔案，下次將重新下載")
-            except:
-                pass
-        raise
+        print(f"標準載入失敗: {e}")
+        # 嘗試使用 compile=False 載入（可能解決某些版本兼容問題）
+        try:
+            print("嘗試使用 compile=False 載入模型...")
+            model = load_model(model_path, compile=False)
+            print("模型載入成功（使用 compile=False）")
+            return model
+        except Exception as e2:
+            print(f"使用 compile=False 也失敗: {e2}")
+            print("這可能是因為：")
+            print("1. 模型檔案損壞或不完整")
+            print("2. TensorFlow/Keras 版本不兼容")
+            print("3. 模型架構問題")
+            print("4. Firebase Storage 中的模型與本地模型不同")
+            # 如果載入失敗，刪除檔案以便重新下載
+            if Path(model_path).exists():
+                try:
+                    Path(model_path).unlink()
+                    print(f"已刪除損壞的檔案，下次將重新下載")
+                except:
+                    pass
+            raise e2
 
 def preprocess():
     PIL_img = Image.open(img_path)

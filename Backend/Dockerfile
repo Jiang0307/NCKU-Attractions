@@ -1,5 +1,5 @@
-# 使用 Python 3.10 slim 作為基礎映像（約 120MB）
-FROM python:3.10-slim
+# 使用 Python 3.8 slim 作為基礎映像（與本地環境一致）
+FROM python:3.8-slim
 
 # 設置工作目錄
 WORKDIR /app
