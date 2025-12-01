@@ -113,7 +113,7 @@ def stream_handler(message):
     if message["data"] == 1:
         print(f"\nProcessing...")
         begin = time.time()
-        storage.child(cloud_path).download( Path(dir_path).joinpath("data").joinpath("test.jpg").as_posix() )
+        storage.child(cloud_path).download(filename=Path(dir_path).joinpath("data").joinpath("test.jpg").as_posix())
         result = start_prediction() # 進行影像辨識處理區段，把顯示結果填到result
         if result != "": # 有辨識結果為2
             print(f"Result : {result}")
