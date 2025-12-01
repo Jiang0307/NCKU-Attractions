@@ -36,7 +36,10 @@ def download_model_from_storage(storage, model_storage_path, local_path):
     """從 Firebase Storage 下載模型檔案（使用 pyrebase）"""
     try:
         print(f"正在從 Firebase Storage 下載模型: {model_storage_path}")
-        storage.child(model_storage_path).download(filename=local_path)
+        # path 是本地保存的目錄，filename 是檔名
+        local_dir = Path(local_path).parent.as_posix()
+        filename = Path(local_path).name
+        storage.child(model_storage_path).download(path=local_dir, filename=filename)
         print(f"模型下載完成: {local_path}")
         return True
     except Exception as e:
@@ -113,7 +116,8 @@ def stream_handler(message):
     if message["data"] == 1:
         print(f"\nProcessing...")
         begin = time.time()
-        storage.child(cloud_path).download(filename=Path(dir_path).joinpath("data").joinpath("test.jpg").as_posix())
+        local_dir = Path(dir_path).joinpath("data").as_posix()
+        storage.child(cloud_path).download(path=local_dir, filename="test.jpg")
         result = start_prediction() # 進行影像辨識處理區段，把顯示結果填到result
         if result != "": # 有辨識結果為2
             print(f"Result : {result}")
