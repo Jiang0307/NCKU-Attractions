@@ -4,3 +4,4 @@ silence-tensorflow>=0.1.2
 pyrebase4>=4.7.1
 Pillow>=10.0.0
 numpy>=1.24.0
+requests>=2.31.0
