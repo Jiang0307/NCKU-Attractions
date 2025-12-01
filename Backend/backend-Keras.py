@@ -122,11 +122,11 @@ def stream_handler(message):
         local_dir.mkdir(parents=True, exist_ok=True)
         
         # 下載圖片
-        print(f"正在從 Firebase Storage 下載圖片: {cloud_path}")
-        storage.child(cloud_path).download(path=local_dir.as_posix(), filename="test.jpg")
+        img_file = local_dir.joinpath("test.jpg")
+        print(f"正在從 Firebase Storage 下載圖片: {cloud_path} 到 {img_file}")
+        storage.child(cloud_path).download(img_file.as_posix())
         
         # 驗證檔案是否存在
-        img_file = local_dir.joinpath("test.jpg")
         if not img_file.exists():
             print(f"錯誤：下載後檔案不存在: {img_file}")
             data = {"result":"", "pictureStatus":3}
