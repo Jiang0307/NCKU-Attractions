@@ -116,8 +116,25 @@ def stream_handler(message):
     if message["data"] == 1:
         print(f"\nProcessing...")
         begin = time.time()
-        local_dir = Path(dir_path).joinpath("data").as_posix()
-        storage.child(cloud_path).download(path=local_dir, filename="test.jpg")
+        
+        # 確保 data 目錄存在
+        local_dir = Path(dir_path).joinpath("data")
+        local_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 下載圖片
+        print(f"正在從 Firebase Storage 下載圖片: {cloud_path}")
+        storage.child(cloud_path).download(path=local_dir.as_posix(), filename="test.jpg")
+        
+        # 驗證檔案是否存在
+        img_file = local_dir.joinpath("test.jpg")
+        if not img_file.exists():
+            print(f"錯誤：下載後檔案不存在: {img_file}")
+            data = {"result":"", "pictureStatus":3}
+            db.update(data)
+            return
+        
+        print(f"圖片下載完成: {img_file}")
+        
         result = start_prediction() # 進行影像辨識處理區段，把顯示結果填到result
         if result != "": # 有辨識結果為2
             print(f"Result : {result}")
