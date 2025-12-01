@@ -60,8 +60,26 @@ def load_model_from_file(model_path, storage=None, download_url=None):
         else:
             raise FileNotFoundError(f"模型檔案不存在: {model_path}，且未提供下載方式")
     
-    # 載入模型
-    return load_model(model_path)
+    # 載入模型（使用與測試腳本相同的方式）
+    try:
+        print(f"正在載入模型: {model_path}")
+        model = load_model(model_path)
+        print("模型載入成功")
+        return model
+    except Exception as e:
+        print(f"載入模型失敗: {e}")
+        print("這可能是因為：")
+        print("1. 模型檔案損壞或不完整")
+        print("2. TensorFlow/Keras 版本不兼容")
+        print("3. 模型架構問題")
+        # 如果載入失敗，刪除檔案以便重新下載
+        if Path(model_path).exists():
+            try:
+                Path(model_path).unlink()
+                print(f"已刪除損壞的檔案，下次將重新下載")
+            except:
+                pass
+        raise
 
 def preprocess():
     PIL_img = Image.open(img_path)
