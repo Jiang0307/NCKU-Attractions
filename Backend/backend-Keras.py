@@ -13,7 +13,7 @@ from config import *
 def download_model_from_url(url, local_path):
     """從 URL 下載模型檔案（使用 requests）"""
     try:
-        print(f"正在從 URL 下載模型: {url}")
+        print(f"正在從 URL 下載模型...")
         response = requests.get(url, stream=True)
         response.raise_for_status()
         
@@ -21,22 +21,15 @@ def download_model_from_url(url, local_path):
         Path(local_path).parent.mkdir(parents=True, exist_ok=True)
         
         # 下載檔案
-        total_size = int(response.headers.get('content-length', 0))
-        downloaded = 0
-        
         with open(local_path, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 if chunk:
                     f.write(chunk)
-                    downloaded += len(chunk)
-                    if total_size > 0:
-                        percent = (downloaded / total_size) * 100
-                        print(f"\r下載進度: {percent:.1f}%", end='', flush=True)
         
-        print(f"\n模型下載完成: {local_path}, 大小: {downloaded} bytes")
+        print(f"模型下載完成: {local_path}")
         return True
     except Exception as e:
-        print(f"\n下載模型時發生錯誤: {e}")
+        print(f"下載模型時發生錯誤: {e}")
         return False
 
 def download_model_from_storage(storage, model_storage_path, local_path):
