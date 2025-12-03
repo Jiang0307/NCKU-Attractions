@@ -16,15 +16,17 @@ def download_model_from_storage(storage, model_storage_path, local_path):
         print(f"正在從 Firebase Storage 下載模型: {model_storage_path}")
         # 確保目錄存在
         local_path_obj = Path(local_path)
-        local_path_obj.parent.mkdir(parents=True, exist_ok=True)
+        local_dir = local_path_obj.parent
+        local_dir.mkdir(parents=True, exist_ok=True)
+        filename = local_path_obj.name
         
         # 確保目標路徑不是目錄
         if local_path_obj.exists() and local_path_obj.is_dir():
             # 如果是目錄，刪除它
             shutil.rmtree(local_path_obj)
         
-        # 使用完整路徑直接下載（與 PyTorch 版本一致）
-        storage.child(model_storage_path).download(local_path_obj.as_posix())
+        # pyrebase 的 download() 需要 path（目錄）和 filename（檔名）兩個參數
+        storage.child(model_storage_path).download(path=local_dir.as_posix(), filename=filename)
         
         # 驗證下載的檔案是否存在且是檔案
         if not local_path_obj.exists():
@@ -74,20 +76,36 @@ def load_model_from_file(model_path, storage=None):
     if model_path_obj.stat().st_size == 0:
         raise ValueError(f"模型檔案為空: {model_path}")
     
-    # 載入模型（使用與測試腳本相同的方式）
+    # 載入模型前，先驗證檔案格式
+    print(f"正在載入模型: {model_path}")
+    
+    # 對於 .h5 檔案，先驗證是否為有效的 HDF5 格式
+    if model_path.endswith('.h5'):
+        try:
+            # 檢查檔案開頭是否為 HDF5 格式的魔術數字
+            with open(model_path, 'rb') as f:
+                header = f.read(8)
+                # HDF5 檔案開頭應該是 \x89HDF\r\n\x1a\n
+                if header[:8] != b'\x89HDF\r\n\x1a\n':
+                    raise ValueError(f"檔案 {model_path} 不是有效的 HDF5 格式（檔案頭: {header[:8]}）")
+            print("檔案格式驗證通過（HDF5）")
+        except Exception as format_check_error:
+            print(f"檔案格式驗證失敗: {format_check_error}")
+            # 如果格式不對，刪除檔案以便重新下載
+            if model_path_obj.exists() and model_path_obj.is_file():
+                try:
+                    model_path_obj.unlink()
+                    print(f"已刪除格式錯誤的檔案，將重新下載")
+                except:
+                    pass
+            raise ValueError(f"模型檔案格式不正確: {format_check_error}")
+    
+    # 載入模型
     try:
-        print(f"正在載入模型: {model_path}")
-        # 對於 .h5 檔案，明確使用 HDF5 格式載入
-        if model_path.endswith('.h5'):
-            # 嘗試標準載入
-            model = load_model(model_path)
-            print("模型載入成功")
-            return model
-        else:
-            # 對於其他格式，使用標準載入
-            model = load_model(model_path)
-            print("模型載入成功")
-            return model
+        # 嘗試標準載入
+        model = load_model(model_path)
+        print("模型載入成功")
+        return model
     except Exception as e:
         print(f"標準載入失敗: {e}")
         # 嘗試使用 compile=False 載入（可能解決某些版本兼容問題）
@@ -139,10 +157,10 @@ def stream_handler(message):
         local_dir = Path(dir_path).joinpath("data")
         local_dir.mkdir(parents=True, exist_ok=True)
         
-        # 下載圖片（使用完整路徑，與 PyTorch 版本一致）
+        # 下載圖片（pyrebase 需要 path 和 filename 兩個參數）
         img_file = local_dir.joinpath("test.jpg")
         print(f"正在從 Firebase Storage 下載圖片: {cloud_path} 到 {img_file}")
-        storage.child(cloud_path).download(img_file.as_posix())
+        storage.child(cloud_path).download(path=local_dir.as_posix(), filename="test.jpg")
         
         # 驗證檔案是否存在
         if not img_file.exists():
