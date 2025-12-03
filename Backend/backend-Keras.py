@@ -1,7 +1,6 @@
 import pyrebase
 import time
 import numpy as np
-import requests
 from silence_tensorflow import silence_tensorflow
 silence_tensorflow()
 import tensorflow as tf
@@ -9,28 +8,6 @@ from tensorflow.keras.models import load_model
 from pathlib import Path
 from PIL import Image
 from config import *
-
-def download_model_from_url(url, local_path):
-    """從 URL 下載模型檔案（使用 requests）"""
-    try:
-        print(f"正在從 URL 下載模型...")
-        response = requests.get(url, stream=True)
-        response.raise_for_status()
-        
-        # 確保目錄存在
-        Path(local_path).parent.mkdir(parents=True, exist_ok=True)
-        
-        # 下載檔案
-        with open(local_path, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                if chunk:
-                    f.write(chunk)
-        
-        print(f"模型下載完成: {local_path}")
-        return True
-    except Exception as e:
-        print(f"下載模型時發生錯誤: {e}")
-        return False
 
 def download_model_from_storage(storage, model_storage_path, local_path):
     """從 Firebase Storage 下載模型檔案（使用 pyrebase）"""
@@ -46,22 +23,20 @@ def download_model_from_storage(storage, model_storage_path, local_path):
         print(f"下載模型時發生錯誤: {e}")
         return False
 
-def load_model_from_file(model_path, storage=None, download_url=None):
-    """載入模型，如果本地不存在則下載"""
+def load_model_from_file(model_path, storage=None):
+    """載入模型，如果本地不存在則從 Firebase Storage 下載"""
     # 檢查本地模型檔案是否存在
     if not Path(model_path).exists():
-        # 優先使用 URL 下載（更可靠）
-        if download_url:
-            print("使用 URL 下載模型...")
-            if not download_model_from_url(download_url, model_path):
-                raise FileNotFoundError(f"無法從 URL 下載模型: {download_url}")
-        elif storage:
-            # 備用方案：使用 pyrebase 下載
-            print("使用 Firebase Storage 下載模型...")
-            if not download_model_from_storage(storage, model_storage_path_keras, model_path):
-                raise FileNotFoundError(f"無法從 Firebase Storage 下載模型: {model_storage_path_keras}")
-        else:
-            raise FileNotFoundError(f"模型檔案不存在: {model_path}，且未提供下載方式")
+        if storage is None:
+            raise FileNotFoundError(f"模型檔案不存在: {model_path}，且未提供 storage 物件")
+        
+        # 確保 model 目錄存在
+        Path(model_path).parent.mkdir(parents=True, exist_ok=True)
+        
+        # 從 Firebase Storage 下載模型
+        print("使用 Firebase Storage 下載模型...")
+        if not download_model_from_storage(storage, model_storage_path_keras, model_path):
+            raise FileNotFoundError(f"無法從 Firebase Storage 下載模型: {model_storage_path_keras}")
     
     # 載入模型（使用與測試腳本相同的方式）
     try:
@@ -161,23 +136,21 @@ if __name__ == "__main__":
             print(f"載入本地模型失敗: {e}，將重新下載")
             # 刪除損壞的檔案
             Path(model_path_keras).unlink()
-            # 從 URL 或 Firebase Storage 下載
+            # 從 Firebase Storage 下載
             firebase = pyrebase.initialize_app(config)
             storage = firebase.storage()
             model = load_model_from_file(
                 model_path_keras, 
-                storage=storage, 
-                download_url=model_download_url_keras if model_download_url_keras else None
+                storage=storage
             )
     else:
-        # 如果沒有，從 URL 或 Firebase Storage 下載
+        # 如果沒有，從 Firebase Storage 下載
         print("本地模型不存在，開始下載...")
         firebase = pyrebase.initialize_app(config)
         storage = firebase.storage()
         model = load_model_from_file(
             model_path_keras, 
-            storage=storage, 
-            download_url=model_download_url_keras if model_download_url_keras else None
+            storage=storage
         )
     
     print("模型載入完成")
