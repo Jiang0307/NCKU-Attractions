@@ -1,9 +1,6 @@
 import pyrebase
 import time
 import numpy as np
-import os
-import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
 from silence_tensorflow import silence_tensorflow
 silence_tensorflow()
 import tensorflow as tf
@@ -46,28 +43,6 @@ def download_model_from_storage(storage, model_storage_path, local_path):
         traceback.print_exc()
         return False
 
-class HealthCheckHandler(BaseHTTPRequestHandler):
-    """簡單的健康檢查 HTTP 處理器（用於 Cloud Run）"""
-    def do_GET(self):
-        if self.path == '/health' or self.path == '/':
-            self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            self.wfile.write(b'{"status": "ok", "service": "ncku-attractions-backend"}')
-        else:
-            self.send_response(404)
-            self.end_headers()
-    
-    def log_message(self, format, *args):
-        # 抑制 HTTP 服務器的日誌輸出
-        pass
-
-def start_http_server(port=8080):
-    """在後台線程中啟動 HTTP 服務器（用於 Cloud Run 健康檢查）"""
-    server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
-    print(f"HTTP 健康檢查服務器已啟動，監聽端口 {port}")
-    server.serve_forever()
-
 def stream_handler(message):
     cloud_path = "test.jpg"
     if message["data"] == 1:
@@ -108,12 +83,6 @@ if __name__ == "__main__":
     # 載入模型
     model = load_model(model_path_keras)
     print("模型載入完成")
-    
-    # 啟動 HTTP 服務器（用於 Railway/Cloud Run 健康檢查）
-    port = int(os.environ.get('PORT', 8080))
-    http_thread = threading.Thread(target=start_http_server, args=(port,), daemon=True)
-    http_thread.start()
-    print(f"HTTP 服務器已在後台線程啟動，端口: {port}")
     
     my_stream = db.child("pictureStatus").stream(stream_handler)
     print("Backend Running...")

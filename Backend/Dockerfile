@@ -27,10 +27,6 @@ RUN mkdir -p data model
 
 # 設置環境變數
 ENV PYTHONUNBUFFERED=1
-ENV PORT=8080
-
-# 暴露端口（Cloud Run 需要，雖然你的應用不使用 HTTP）
-EXPOSE 8080
 
 # 啟動應用程式
 CMD ["python", "backend-Keras.py"]
