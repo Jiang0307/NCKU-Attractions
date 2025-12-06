@@ -1,5 +1,15 @@
+# TensorFlow 和 Keras
 tensorflow==2.4.0
 silence-tensorflow>=0.1.2
+
+# Firebase (使用 pyrebase4)
 pyrebase4>=4.7.1
+
+# HTTP 請求 (用於下載模型和圖片)
+requests>=2.25.0
+
+# 圖像處理
 Pillow>=10.0.0
+
+# 數值計算 (TensorFlow 2.4.0 需要 numpy < 1.20.0)
 numpy<1.20.0,>=1.19.0
