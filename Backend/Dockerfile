@@ -4,20 +4,20 @@ FROM python:3.8-slim
 # 設置工作目錄
 WORKDIR /app
 
-# 安裝系統依賴（Pillow 和編譯工具）
+# 安裝最小系統依賴（僅 Pillow 需要的 libjpeg）
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     zlib1g-dev \
-    gcc \
-    g++ \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
 # 複製 requirements.txt 並安裝 Python 依賴
+# 使用 TensorFlow/Keras（比 PyTorch 更輕量）
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt && \
-    pip cache purge && rm -rf /root/.cache/pip
+    pip cache purge && \
+    rm -rf /root/.cache/pip
 
 # 複製應用程式檔案
 COPY . .
