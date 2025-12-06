@@ -1,8 +1,12 @@
 # 使用 TensorFlow/Keras 替代 PyTorch
-# 固定版本為 2.4.0 以與本地環境一致
+# 固定版本以與本地環境一致
+# 注意：部署環境使用 CPU 版本（Railway 沒有 GPU）
 tensorflow==2.4.0
-silence-tensorflow>=0.1.2
-pyrebase4>=4.7.1
-Pillow>=10.0.0
+tensorflow-estimator==2.4.0
+tensorflow-addons==0.19.0
+silence-tensorflow==1.2.0
+# 使用 Pyrebase 3.0.27（代碼中 import pyrebase）
+Pyrebase==3.0.27
+Pillow==9.2.0
 # TensorFlow 2.4.0 需要較舊的 numpy 版本
-numpy<1.20.0,>=1.19.0
+numpy==1.19.5

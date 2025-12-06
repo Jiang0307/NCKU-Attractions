@@ -12,7 +12,3 @@ model_path_pytorch = Path(dir_path).joinpath("model").joinpath("model-PyTorch.pt
 # Firebase Storage 上的模型路徑
 model_storage_path_pytorch = "model/model-PyTorch.pth"
 model_storage_path_keras = "model/model-Keras.h5"
-
-# Firebase Storage 公開下載 URL（需要替換為實際的 Keras 模型 URL）
-# 格式：https://firebasestorage.googleapis.com/v0/b/{bucket}/o/{path}?alt=media&token={token}
-model_download_url_keras = "https://firebasestorage.googleapis.com/v0/b/schoolspots-5a845.appspot.com/o/model%2Fmodel-Keras.h5?alt=media&token=ad6fd9df-3ab5-45e0-8b76-7e5cadd4ebb2"
