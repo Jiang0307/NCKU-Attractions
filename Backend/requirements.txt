@@ -16,7 +16,7 @@ opt-einsum==3.3.0
 protobuf==3.19.4
 six==1.15.0
 termcolor==1.1.0
-typing-extensions==4.13.2
+typing-extensions==3.7.4.3
 wrapt==1.12.1
 gast==0.3.3
 tensorflow-estimator==2.4.0
