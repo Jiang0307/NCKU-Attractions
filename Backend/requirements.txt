@@ -1,12 +1,22 @@
 # 使用 TensorFlow/Keras 替代 PyTorch
 # 固定版本以與本地環境一致
 # 注意：部署環境使用 CPU 版本（Railway 沒有 GPU）
+
+# 先安裝基礎依賴（解決版本衝突）
+grpcio==1.32.0
+requests==2.11.1
+
+# TensorFlow 相關
 tensorflow==2.4.0
 tensorflow-estimator==2.4.0
 tensorflow-addons==0.19.0
 silence-tensorflow==1.2.0
-# 使用 Pyrebase 3.0.27（代碼中 import pyrebase）
+
+# Firebase 相關
 Pyrebase==3.0.27
+
+# 圖像處理
 Pillow==9.2.0
+
 # TensorFlow 2.4.0 需要較舊的 numpy 版本
 numpy==1.19.5
