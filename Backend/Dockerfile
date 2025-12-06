@@ -12,12 +12,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 # 複製 requirements.txt 並安裝 Python 依賴
-# 使用 TensorFlow/Keras（比 PyTorch 更輕量）
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip cache purge && \
-    rm -rf /root/.cache/pip
+    pip install --no-cache-dir grpcio==1.32.0 requests==2.11.1 numpy==1.19.5 && \
+    pip install --no-cache-dir tensorflow==2.4.0 --no-deps && \
+    pip install --no-cache-dir tensorflow-estimator==2.4.0 tensorflow-addons==0.19.0 silence-tensorflow==1.2.0 Pyrebase==3.0.27 Pillow==9.2.0 && \
+    pip install --no-cache-dir absl-py astunparse flatbuffers google-pasta h5py keras-preprocessing opt-einsum protobuf==3.19.6 six termcolor typing-extensions wrapt gast && \
+    pip cache purge && rm -rf /root/.cache/pip
 
 # 複製應用程式檔案
 COPY . .
